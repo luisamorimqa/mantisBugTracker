@@ -32,6 +32,29 @@
         <version>5.3.0</version>
         <scope>test</scope>
     </dependency>
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>5.3.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>json-path</artifactId>
+        <version>5.3.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>json-schema-validator</artifactId>
+        <version>5.4.0</version>
+    </dependency>
+    <dependency>
+        <groupId>io.rest-assured</groupId>
+        <artifactId>rest-assured</artifactId>
+        <version>5.5.0</version>
+    </dependency>
+
     <!-- JSON Path (opcional, caso você use para validar JSONs complexos) -->
     <dependency>
         <groupId>io.rest-assured</groupId>
