@@ -7,11 +7,11 @@ public class SharedData {
 
     private static final Map<String, Object> dataMap = new HashMap<>();
 
-    public static <T> void put(String key, T value) {
-        dataMap.put(key, value);
+    public static <T> void put(String key, T object) {
+        dataMap.put(key, object);
     }
 
-    public static <T> T get(String key) {
+    public static <T> T get(String key){
         return (T) dataMap.get(key);
     }
 
