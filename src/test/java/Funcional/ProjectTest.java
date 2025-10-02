@@ -13,4 +13,16 @@ public class ProjectTest {
     public void deveRetornarTodosOsProjetosCadastrados() {
         projectEndpoint.getAllProjects();
     }
+
+    @Test
+    @DisplayName("POST /api/rest/projects/ -> Deve adicionar um novo projeto")
+    public void deveAddUmNovoProjeto() {
+        projectEndpoint.postProject();
+    }
+
+    @Test
+    @DisplayName("GET /api/rest/projects/ -> Deve retornar o projeto buscado")
+    public void deveRetornarOProjetoBuscado() {
+        projectEndpoint.getExistentProject();
+    }
 }
