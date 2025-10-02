@@ -20,4 +20,13 @@ public class DataFaker {
         List<String> status = List.of("planning", "development", "release", "stable", "obsolete");
         return status.get(faker.random().nextInt(0, 4));
     }
+
+    public static String getProjectViewState() {
+        List<String> viewState = List.of("public", "private");
+        return viewState.get(faker.random().nextInt(0, 1));
+    }
+
+    public static boolean getProjectEnabled() {
+        return faker.bool().bool();
+    }
 }
