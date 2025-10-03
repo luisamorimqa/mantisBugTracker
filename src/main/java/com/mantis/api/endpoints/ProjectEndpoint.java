@@ -75,6 +75,21 @@ public class ProjectEndpoint {
                 ;
     }
 
+    public void deleteProject() {
+        ProjectDTO projectDTO = ProjectDataTest.setValue();
+        backgroundPostProject(projectDTO);
+
+        given()
+                .spec(Specs.authSpec())
+                .when()
+                .delete("/api/rest/projects/" + PROJECT_ID)
+                .then()
+                .log().all()
+                .statusCode(HttpStatus.SC_OK)
+                .statusLine(equalTo("HTTP/1.1 200 Project with id " + PROJECT_ID + " deleted."))
+                ;
+    }
+
     public void backgroundPostProject(ProjectDTO projectDTO) {
 
         PROJECT_ID =

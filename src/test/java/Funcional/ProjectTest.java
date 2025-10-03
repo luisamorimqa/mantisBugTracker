@@ -25,4 +25,10 @@ public class ProjectTest {
     public void deveRetornarOProjetoBuscado() {
         projectEndpoint.getExistentProject();
     }
+
+    @Test
+    @DisplayName("DELETE /api/rest/projects/ -> Deve deletar o projeto")
+    public void deveDeletarOProjto() {
+        projectEndpoint.deleteProject();
+    }
 }
