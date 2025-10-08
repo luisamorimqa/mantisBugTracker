@@ -100,7 +100,7 @@ public class ProjectEndpoint {
                 .post("/api/rest/projects/")
                 .then()
                 .log().all()
-                .extract().path("project.id");
+                .extract().path("project.id")
         ;
     }
 }
