@@ -115,6 +115,8 @@ public class IssueDTO {
         return this.tags;
     }
 
+    public IssueDTO() {}
+
     public IssueDTO(String summary,
                     String description,
                     String additionalInformation,

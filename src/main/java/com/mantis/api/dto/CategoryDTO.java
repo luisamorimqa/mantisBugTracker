@@ -21,6 +21,10 @@ public class CategoryDTO {
         return this.name;
     }
 
+    public CategoryDTO(String name) {
+        this.setName(name);
+    }
+
     public CategoryDTO(String id, String name) {
         this.setId(id);
         this.setName(name);
