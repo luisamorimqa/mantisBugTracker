@@ -20,4 +20,10 @@ public class IssueTest {
         issueEndpoint.getAllIssues();
     }
 
+    @Test
+    @DisplayName("GET /api/rest/issues -> Deve retornar uma issue cadastrada")
+    public void getAnIssue() {
+        issueEndpoint.getAnIssue();
+    }
+
 }
