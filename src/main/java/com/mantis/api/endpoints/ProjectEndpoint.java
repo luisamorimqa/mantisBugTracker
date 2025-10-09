@@ -23,8 +23,8 @@ public class ProjectEndpoint {
                     .log().all()
                     .statusCode(HttpStatus.SC_OK)
                     .body("projects", hasSize(greaterThan(0)))
-                    ;
-        } catch(AssertionError error) {
+            ;
+        } catch (AssertionError error) {
             System.err.println("Falha no teste getAllProjects(): " + error.getMessage());
             throw error;
         }
@@ -48,9 +48,9 @@ public class ProjectEndpoint {
                     .body("project.description", equalTo(projectDTO.getDescription()))
                     .body("project.enabled", equalTo(projectDTO.getEnabled()))
                     .body("project.view_state.name", equalTo(projectDTO.getViewState().getName()))
-                    ;
+            ;
 
-        } catch(AssertionError error) {
+        } catch (AssertionError error) {
             System.err.println("Falha no teste postProject(): " + error.getMessage());
             throw error;
         }
@@ -72,7 +72,7 @@ public class ProjectEndpoint {
                 .body("projects[0].description", equalTo(projectDTO.getDescription()))
                 .body("projects[0].enabled", equalTo(projectDTO.getEnabled()))
                 .body("projects[0].view_state.name", equalTo(projectDTO.getViewState().getName()))
-                ;
+        ;
     }
 
     public void deleteProject() {
@@ -87,20 +87,20 @@ public class ProjectEndpoint {
                 .log().all()
                 .statusCode(HttpStatus.SC_OK)
                 .statusLine(equalTo("HTTP/1.1 200 Project with id " + PROJECT_ID + " deleted."))
-                ;
+        ;
     }
 
     public void backgroundPostProject(ProjectDTO projectDTO) {
 
         PROJECT_ID =
-        given()
-                .spec(Specs.authSpec())
-                .body(projectDTO)
-                .when()
-                .post("/api/rest/projects/")
-                .then()
-                .log().all()
-                .extract().path("project.id")
+                given()
+                        .spec(Specs.authSpec())
+                        .body(projectDTO)
+                        .when()
+                        .post("/api/rest/projects/")
+                        .then()
+                        .log().all()
+                        .extract().path("project.id")
         ;
     }
 }
