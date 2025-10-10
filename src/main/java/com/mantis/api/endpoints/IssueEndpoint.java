@@ -16,19 +16,16 @@ public class IssueEndpoint {
     static int ISSUE_ID;
 
     public void postMinimalIssue() {
-
         //Instância do endpoint
         ProjectEndpoint projectEndpoint = new ProjectEndpoint();
         //Preenchimento do DTO que será usado para criação do projeto
         ProjectDTO projectDTOCriacao = ProjectDataTest.setValue();
         //Criação do projeto
         projectEndpoint.backgroundPostProject(projectDTOCriacao);
-
         //Busca de informações usadas para a criação do projeto
         ProjectDTO projectDTO = SharedData.get("projectDTO");
         //Criação do DTO que será usado para a criação da issue, já com os dados do projeto criado
         MinimalIssueDTO minimalIssueDTO = IssueDataTest.setValueMinimalIssue(projectDTO);
-
         //Execução de requisição de criação da Issue
         try {
             given()
@@ -49,7 +46,6 @@ public class IssueEndpoint {
     }
 
     public void getAllIssues() {
-
         //Consulta de todas as Issues cadastradas
         try {
             given()
@@ -69,7 +65,6 @@ public class IssueEndpoint {
     }
 
     public void getAnIssue() {
-
         //Criação do projeto para a criação da Issue
         ProjectEndpoint projectEndpoint = new ProjectEndpoint();
         ProjectDTO projectDTOCriacao = ProjectDataTest.setValue();
@@ -92,7 +87,7 @@ public class IssueEndpoint {
                     .body("issues[0].summary", equalTo(minimalIssueDTO.getSummary()))
                     .body("issues[0].description", equalTo(minimalIssueDTO.getDescription()))
             ;
-        } catch(AssertionError error) {
+        } catch (AssertionError error) {
             //Em caso de qualquer exceção, a mensagem será exibida
             System.err.println("Falha no teste getAnIssue(): " + error.getMessage());
             throw error;
