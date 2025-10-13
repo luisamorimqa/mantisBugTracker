@@ -26,4 +26,9 @@ public class IssueTest {
         issueEndpoint.getAnIssue();
     }
 
+    @Test
+    @DisplayName("DELETE /api/rest/issues -> Deve deletar uma issue")
+    public void deleteAnIssue() {
+        issueEndpoint.deleteAnIssue();
+    }
 }

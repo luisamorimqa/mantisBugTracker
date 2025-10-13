@@ -94,6 +94,35 @@ public class IssueEndpoint {
         }
     }
 
+    public void deleteAnIssue() {
+        //Criação do projeto para a criação da Issue
+        ProjectEndpoint projectEndpoint = new ProjectEndpoint();
+        ProjectDTO projectDTOCriacao = ProjectDataTest.setValue();
+        projectEndpoint.backgroundPostProject(projectDTOCriacao);
+        ProjectDTO projectDTO = SharedData.get("projectDTO");
+
+        //Criação da Issue
+        MinimalIssueDTO minimalIssueDTO = IssueDataTest.setValueMinimalIssue(projectDTO);
+        backgroundPostIssue(minimalIssueDTO);
+
+        try {
+
+            given()
+                    .spec(Specs.authSpec())
+                    .when()
+                    .delete("/api/rest/issues/" + ISSUE_ID)
+                    .then()
+                    .log().all()
+                    .statusCode(HttpStatus.SC_NO_CONTENT)
+                    .statusLine(equalTo("HTTP/1.1 204 No Content"))
+                    ;
+
+        } catch(AssertionError error) {
+            System.err.println("Falha no teste deleteAnIssue(): " + error.getMessage());
+            throw error;
+        }
+    }
+
     public void backgroundPostIssue(MinimalIssueDTO minimalIssueDTO) {
         //Criação de Issue e obtenção do ID para utilização em outros testes
         ISSUE_ID =
