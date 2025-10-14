@@ -1,25 +1,50 @@
 package com.mantis.api.data;
 
-import com.mantis.api.dto.CategoryDTO;
-import com.mantis.api.dto.MinimalIssueDTO;
-import com.mantis.api.dto.ProjectDTO;
+import com.mantis.api.dto.*;
 import com.mantis.api.utils.SharedData;
+import org.yaml.snakeyaml.nodes.Tag;
 
 import static com.mantis.api.utils.DataFaker.*;
 
 public class IssueDataTest {
 
-    public static MinimalIssueDTO setValueMinimalIssue(ProjectDTO projectDTO) {
+    public static IssueDTO setMinimalIssueValue(ProjectDTO projectDTO) {
+        IssueDTO minimalIssueDTO = new IssueDTO();
+        CategoryDTO categoryDTO = new CategoryDTO("bugtracker");
 
-        MinimalIssueDTO minimalIssueDTO = new MinimalIssueDTO();
-        CategoryDTO categoryDTO = new CategoryDTO("General");
-
-        minimalIssueDTO.setSummary(getRandomString());
-        minimalIssueDTO.setDescription(getRandomParagraph());
-        minimalIssueDTO.setCategory(categoryDTO);
-        minimalIssueDTO.setProject(projectDTO);
+        minimalIssueDTO.setSummary("asda");
+        minimalIssueDTO.setDescription("descr");
+        minimalIssueDTO.setCategoryDTO(categoryDTO);
+        minimalIssueDTO.setProjectDTO(projectDTO);
 
         SharedData.put("minimalIssueDTO", minimalIssueDTO);
         return minimalIssueDTO;
+    }
+
+    public static IssueDTO setIssueValue(ProjectDTO projectDTO) {
+        IssueDTO issueDTO = new IssueDTO();
+        CategoryDTO categoryDTO = new CategoryDTO(getRandomIssueCategory());
+        HandlerDTO handlerDTO = new HandlerDTO(getRandomHandler());
+        ViewStateDTO viewStateDTO = new ViewStateDTO(getRandomProjectViewState());
+        PriorityDTO priorityDTO = new PriorityDTO(getRandomPriority());
+        SeverityDTO severityDTO = new SeverityDTO(getRandomSeverity());
+        ReproducibilityDTO reproducibilityDTO = new ReproducibilityDTO(getRandomReproducibility());
+        TagDTO tag1 = new TagDTO(getRandomTagName());
+        TagDTO[] tags = new TagDTO[] {tag1};
+
+        issueDTO.setSummary(getRandomString());
+        issueDTO.setDescription(getRandomParagraph());
+        issueDTO.setProjectDTO(projectDTO);
+        issueDTO.setCategoryDTO(categoryDTO);
+        issueDTO.setHandlerDTO(handlerDTO);
+        issueDTO.setViewStateDTO(viewStateDTO);
+        issueDTO.setPriorityDTO(priorityDTO);
+        issueDTO.setSeverityDTO(severityDTO);
+        issueDTO.setReproducibilityDTO(reproducibilityDTO);
+        issueDTO.setSticky(getRandomBoolean());
+        issueDTO.setTags(tags);
+
+        SharedData.put("issueDTO", issueDTO);
+        return issueDTO;
     }
 }
