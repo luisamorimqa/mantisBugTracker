@@ -89,6 +89,7 @@ public class ProjectEndpoint {
         backgroundPostProject(projectDTO);
 
         try {
+            //Teste de deleção do projeto cadastrado
             given()
                     .spec(Specs.authSpec())
                     .when()

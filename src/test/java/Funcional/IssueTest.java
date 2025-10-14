@@ -15,6 +15,12 @@ public class IssueTest {
     }
 
     @Test
+    @DisplayName("POST /api/rest/issues -> Deve criar uma issue")
+    public void postIssue() {
+        issueEndpoint.postIssue();
+    }
+
+    @Test
     @DisplayName("GET /api/rest/issues -> Deve retornar todas as issues cadastradas")
     public void getAllIssue() {
         issueEndpoint.getAllIssues();
@@ -24,6 +30,12 @@ public class IssueTest {
     @DisplayName("GET /api/rest/issues -> Deve retornar uma issue cadastrada")
     public void getAnIssue() {
         issueEndpoint.getAnIssue();
+    }
+
+    @Test
+    @DisplayName("PATCH /api/rest/issues -> Deve alterar uma issue existente")
+    public void patchIssue() {
+        issueEndpoint.patchIssue();
     }
 
     @Test
