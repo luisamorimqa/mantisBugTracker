@@ -15,7 +15,7 @@ public class ProjectDataTest {
         ViewStateDTO viewStateDTO = new ViewStateDTO();
 
         statusDTO.setName(getProjectStatus());
-        viewStateDTO.setName(getProjectViewState());
+        viewStateDTO.setName(getRandomProjectViewState());
 
         projectDTO.setName(getRandomString());
         projectDTO.setStatus(statusDTO);
