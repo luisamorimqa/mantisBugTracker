@@ -11,4 +11,10 @@ public class ViewStateDTO {
     public String getName() {
         return this.name;
     }
+
+    public ViewStateDTO() {}
+
+    public ViewStateDTO(String name) {
+        this.setName(name);
+    }
 }

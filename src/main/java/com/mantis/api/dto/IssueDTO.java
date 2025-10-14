@@ -8,13 +8,19 @@ public class IssueDTO {
     private String description;
     @JsonProperty("additional_information")
     private String additionalInformation;
+    @JsonProperty("project")
     private ProjectDTO projectDTO;
+    @JsonProperty("category")
     private CategoryDTO categoryDTO;
+    @JsonProperty("handler")
     private HandlerDTO handlerDTO;
     @JsonProperty("view_state")
     private ViewStateDTO viewStateDTO;
+    @JsonProperty("priority")
     private PriorityDTO priorityDTO;
+    @JsonProperty("severity")
     private SeverityDTO severityDTO;
+    @JsonProperty("reproducibility")
     private ReproducibilityDTO reproducibilityDTO;
     private boolean sticky;
     private TagDTO[] tags;
