@@ -17,4 +17,13 @@ public class Specs {
                 .build()
                 ;
     }
+
+    public static RequestSpecification withoutAuthSpec() {
+        return new RequestSpecBuilder()
+                .setBaseUri(BASE_URL)
+                .addHeader("Content-type", "application/json")
+                .addHeader("Accept", "*/*")
+                .build()
+                ;
+    }
 }
