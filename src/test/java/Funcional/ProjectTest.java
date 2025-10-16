@@ -21,6 +21,12 @@ public class ProjectTest {
     }
 
     @Test
+    @DisplayName("POST /api/rest/projects/ -> Não deve conseguir adicionar um novo projeto")
+    public void naoDeveAdicionarNovoProjeto() {
+        projectEndpoint.postProjectWithoutAutSpec();
+    }
+
+    @Test
     @DisplayName("GET /api/rest/projects/ -> Deve retornar o projeto buscado")
     public void deveRetornarOProjetoBuscado() {
         projectEndpoint.getExistentProject();

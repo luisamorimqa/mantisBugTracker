@@ -56,6 +56,28 @@ public class ProjectEndpoint {
         }
     }
 
+    public void postProjectWithoutAutSpec() {
+        //Preenchimento do DTO que será usado para criação do projeto
+        ProjectDTO projectDTO = ProjectDataTest.setValue();
+        //Execução de requisição de criação de projeto sem a autorização
+        try {
+            given()
+                    .spec(Specs.withoutAuthSpec())
+                    .body(projectDTO)
+                    .when()
+                    .post("/api/rest/projects/")
+                    .then()
+                    .log().all()
+                    .statusCode(HttpStatus.SC_UNAUTHORIZED)
+                    .statusLine("HTTP/1.1 401 API token required")
+                    ;
+        } catch(AssertionError error) {
+            //Em caso de qualquer exceção, a mensagem será exibida
+            System.err.println("Falha no teste postProjectWithoutAutSpec(): " + error.getMessage());
+            throw error;
+        }
+    }
+
     public void getExistentProject() {
         //Criação do DTO que será usado para a criação do projeto
         ProjectDTO projectDTO = ProjectDataTest.setValue();
