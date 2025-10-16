@@ -108,15 +108,20 @@ public class ProjectEndpoint {
 
     public void backgroundPostProject(ProjectDTO projectDTO) {
         //Criação de projeto e obtenção do ID para utilização em outros testes
-        PROJECT_ID =
-                given()
-                        .spec(Specs.authSpec())
-                        .body(projectDTO)
-                        .when()
-                        .post("/api/rest/projects/")
-                        .then()
-                        .log().all()
-                        .extract().path("project.id")
-        ;
+        try {
+            PROJECT_ID =
+                    given()
+                            .spec(Specs.authSpec())
+                            .body(projectDTO)
+                            .when()
+                            .post("/api/rest/projects/")
+                            .then()
+                            .log().all()
+                            .extract().path("project.id")
+            ;
+        } catch(AssertionError error) {
+            System.err.println("Falha ao executar backgroundPostProject(): " + error.getMessage());
+            throw error;
+        }
     }
 }
