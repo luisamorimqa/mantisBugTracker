@@ -47,6 +47,37 @@ public class IssueEndpoint {
         }
     }
 
+    public void postIssueWithoutAuth() {
+        //Instância do endpoint
+        ProjectEndpoint projectEndpoint = new ProjectEndpoint();
+        //Preenchimento do DTO que será usado para criação do projeto
+        ProjectDTO projectDTOCriacao = ProjectDataTest.setValue();
+        //Criação do projeto
+        projectEndpoint.backgroundPostProject(projectDTOCriacao);
+        //Busca de informações usadas para a criação do projeto
+        ProjectDTO projectDTO = SharedData.get("projectDTO");
+        //Criação do DTO que será usado para a criação da issue, já com os dados do projeto criado
+        IssueDTO issueDTO = IssueDataTest.setIssueValue(projectDTO);
+        //Execução de requisição de criação da Issue
+        try {
+
+            given()
+                    .spec(Specs.withoutAuthSpec())
+                    .body(issueDTO)
+                    .log().all()
+                    .when()
+                    .post("/api/rest/issues/")
+                    .then()
+                    .log().all()
+                    .statusCode(HttpStatus.SC_UNAUTHORIZED)
+                    .statusLine("HTTP/1.1 401 API token required")
+                    ;
+        } catch(AssertionError error) {
+            System.err.println("Falha no teste postIssueWithoutAuth(): " + error.getMessage());
+            throw error;
+        }
+    }
+
     public void postMinimalIssue() {
         //Instância do endpoint
         ProjectEndpoint projectEndpoint = new ProjectEndpoint();

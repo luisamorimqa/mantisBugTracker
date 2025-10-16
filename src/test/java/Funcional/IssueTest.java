@@ -21,6 +21,12 @@ public class IssueTest {
     }
 
     @Test
+    @DisplayName("POST /api/rest/issues -> Não deve conseguir adicionar uma nova issue")
+    public void naoDeveAdicionarIssue() {
+        issueEndpoint.postIssueWithoutAuth();
+    }
+
+    @Test
     @DisplayName("GET /api/rest/issues -> Deve retornar todas as issues cadastradas")
     public void getAllIssue() {
         issueEndpoint.getAllIssues();
